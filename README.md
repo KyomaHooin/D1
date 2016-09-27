@@ -54,11 +54,30 @@ NodeMCU custom build by frightanic.com
  powered by Lua 5.1.4 on SDK 1.5.4.1(39cb9a32)
 lua: cannot open init.lua
 </pre>
+LUA UPLOAD
+<pre>
+./luatool.py --port /dev/ttyUSB0 --baud 115200 --src main.lua --dest main.lua --verbose
+
+Upload starting
+Stage 1. Deleting old file from flash memory
+->file.open("main.lua", "w") -> ok
+->file.close() -> ok
+
+Stage 2. Creating file in flash memory and write first line->file.remove("main.lua") -> ok
+
+Stage 3. Start writing data to flash memory...->file.open("main.lua", "w+") -> ok
+
+Stage 4. Flush data and closing file->file.writeline([==[print("Hello!");]==]) -> ok
+->file.flush() -> ok
+->file.close() -> ok
+--->>> All done <<<---
+</pre>
 FILE
 <pre>
 nodemcu-master-7-modules-2016-09-25-09-49-12-integer.bin - Firmware SDK 1.5.4.1
                                esp_init_data_default.bin - Init block patch.
                                               esptool.py - Flashing tool by Fredrik Ahlberg.
+                                              loatool.py - LUA upload tool by "4ref0nt".
 </pre>
 CONTACT
 
