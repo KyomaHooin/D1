@@ -77,7 +77,9 @@ FILE
 nodemcu-master-7-modules-2016-09-25-09-49-12-integer.bin - Firmware SDK 1.5.4.1
                                esp_init_data_default.bin - Init block patch.
                                               esptool.py - Flashing tool by Fredrik Ahlberg.
-                                              loatool.py - LUA upload tool by "4ref0nt".
+                                              luatool.py - LUA upload tool by "4ref0nt".
+                                                init.lua - Init loader program.
+                                                main.lua - Main program.
 </pre>
 CONTACT
 
