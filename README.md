@@ -14,15 +14,15 @@ Manufacturer: e0
       Device: 4016
 </pre>
 FIRMWARE UPGRADE
-<pre>
-./esptool.py --port /dev/ttyUSB0 --baud 115200 erase_flash
 
+./esptool.py --port /dev/ttyUSB0 --baud 115200 erase_flash
+<pre>
 esptool.py v1.2-dev
 Connecting...
 Erasing flash (this may take a while)...
-
+</pre>
 ./esptool.py --port /dev/ttyUSB0 --baud 115200 write_flash <b>-fm dio -fs 32m</b> 0x00000 nodemcu-master-7-modules-2016-09-25-09-49-12-integer.bin <b>0x3fc000</b> esp_init_data_default.bin 
-
+<pre>
 esptool.py v1.2-dev
 Connecting...
 Running Cesanta flasher stub...
@@ -32,9 +32,9 @@ Wrote 385024 bytes at 0x0 in 33.4 seconds (92.3 kbit/s)...
 Writing 4096 @ 0x3fc000... 4096 (100 %)
 Wrote 4096 bytes at 0x3fc000 in 0.4 seconds (89.2 kbit/s)...
 Leaving...
-
+</pre>
 ./esptool.py --port /dev/ttyUSB0 --baud 115200 verify_flash 0x00000 nodemcu-master-7-modules-2016-09-25-09-49-12-integer.bin 
-
+<pre>
 esptool.py v1.2-dev
 Connecting...
 Running Cesanta flasher stub...
