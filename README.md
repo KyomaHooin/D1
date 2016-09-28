@@ -12,6 +12,7 @@ D1
          MAC: 5c:cf:7f:81:cf:24
 Manufacturer: e0
       Device: 4016
+         LED: 4 (GPIO2)
 </pre>
 FIRMWARE UPGRADE
 <pre>
