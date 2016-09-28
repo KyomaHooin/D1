@@ -1,5 +1,5 @@
 -- INIT
-print("Booting...");
+print("Booting...")
 -- 10s init delay failsafe
-tmr.alarm(0, 10000, 0, function () dofile("main.lua") end );
-print("Done.");
+tmr.alarm(0, 10000, 0, function () dofile("main.lua") end )
+print("Done.")
