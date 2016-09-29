@@ -1,7 +1,7 @@
 
 DESCRIPTION
 
-Simple wireless HTTP webserver and LED light control.
+Simple LED blink code.
 
 D1
 <pre>
