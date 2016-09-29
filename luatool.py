@@ -99,7 +99,7 @@ class SerialTransport(AbstractTransport):
         self.serial.timeout = 3
         self.serial.interCharTimeout = 3
 
-    def writeln(self, data, check=1):
+    def writeln(self, data, check=0):
         if self.serial.inWaiting() > 0:
             self.serial.flushInput()
         if len(data) > 0:
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     # parse arguments or use defaults
     parser = argparse.ArgumentParser(description='ESP8266 Lua script uploader.')
     parser.add_argument('-p', '--port',    default='/dev/ttyUSB0', help='Device name, default /dev/ttyUSB0')
-    parser.add_argument('-b', '--baud',    default=9600,           help='Baudrate, default 9600')
+    parser.add_argument('-b', '--baud',    default=115200,           help='Baudrate, default 115200')
     parser.add_argument('-f', '--src',     default='main.lua',     help='Source file on computer, default main.lua')
     parser.add_argument('-t', '--dest',    default=None,           help='Destination file on MCU, default to source file name')
     parser.add_argument('-c', '--compile', action='store_true',    help='Compile lua to lc after upload')
@@ -269,8 +269,8 @@ if __name__ == '__main__':
     if args.append==False:
         if args.verbose:
             sys.stderr.write("Stage 1. Deleting old file from flash memory")
-        transport.writeln("file.open(\"" + args.dest + "\", \"w\")\r")
-        transport.writeln("file.close()\r")
+    #    transport.writeln("file.open(\"" + args.dest + "\", \"w\")\r")
+    #    transport.writeln("file.close()\r")
         transport.writeln("file.remove(\"" + args.dest + "\")\r")
     else:
         if args.verbose:
