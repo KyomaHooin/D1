@@ -5,7 +5,7 @@ Simple wireless HTTP webserver and LED light control.
 
 D1
 <pre>
-[ 7872.387143] ch341 3-1:1.0: ch341-uart converter detected
+[ 7872.387143] <b>ch341</b> 3-1:1.0: ch341-uart converter detected
 [ 7872.401308] usb 3-1: ch341-uart converter now attached to ttyUSB0
 
      Chip ID: 0x0081cf24
@@ -53,24 +53,21 @@ NodeMCU custom build by frightanic.com
         modules: file,gpio,net,node,tmr,uart,wifi
  build  built on: 2016-09-25 09:48
  powered by Lua 5.1.4 on SDK 1.5.4.1(39cb9a32)
-lua: cannot open init.lua
 </pre>
 LUA UPLOAD
 <pre>
 ./luatool.py --port /dev/ttyUSB0 --baud 115200 --src main.lua --dest main.lua --verbose
 
-Upload starting
+--->>> Upload starting <<<---
 Stage 1. Deleting old file from flash memory
-->file.open("main.lua", "w") -> ok
-->file.close() -> ok
-
-Stage 2. Creating file in flash memory and write first line->file.remove("main.lua") -> ok
-
-Stage 3. Start writing data to flash memory...->file.open("main.lua", "w+") -> ok
-
-Stage 4. Flush data and closing file->file.writeline([==[print("Hello!");]==]) -> ok
-->file.flush() -> ok
-->file.close() -> ok
+->file.remove("test.lua") -> send without check
+Stage 2. Creating file in flash memory and write first line
+->file.open("test.lua", "w+") -> send without check
+Stage 3. Start writing data to flash memory
+->file.writeline([==[print("hello!")]==]) -> send without check
+Stage 4. Flush data and closing file
+->file.flush() -> send without check
+->file.close() -> send without check
 --->>> All done <<<---
 </pre>
 FILE
