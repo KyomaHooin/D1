@@ -103,14 +103,14 @@ class SerialTransport(AbstractTransport):
         if self.serial.inWaiting() > 0:
             self.serial.flushInput()
         if len(data) > 0:
-            sys.stdout.write("\r\n->")
+            sys.stdout.write("->")
             sys.stdout.write(data.split("\r")[0])
         self.serial.write(data)
         sleep(self.delay)
         if check > 0:
             self.performcheck(data)
         else:
-            sys.stdout.write(" -> send without check")
+            sys.stdout.write(" -> send without check\r\n")
 
     def read(self, length):
         return self.serial.read(length)
@@ -263,14 +263,12 @@ if __name__ == '__main__':
 
     # set serial timeout
     if args.verbose:
-        sys.stderr.write("Upload starting\r\n")
+        sys.stderr.write("--->>> Upload starting <<<---\r\n")
 
     # remove existing file on device
     if args.append==False:
         if args.verbose:
-            sys.stderr.write("Stage 1. Deleting old file from flash memory")
-    #    transport.writeln("file.open(\"" + args.dest + "\", \"w\")\r")
-    #    transport.writeln("file.close()\r")
+            sys.stderr.write("Stage 1. Deleting old file from flash memory\r\n")
         transport.writeln("file.remove(\"" + args.dest + "\")\r")
     else:
         if args.verbose:
@@ -279,14 +277,14 @@ if __name__ == '__main__':
 
     # read source file line by line and write to device
     if args.verbose:
-        sys.stderr.write("\r\nStage 2. Creating file in flash memory and write first line")
+        sys.stderr.write("Stage 2. Creating file in flash memory and write first line\r\n")
     if args.append:
         transport.writeln("file.open(\"" + args.dest + "\", \"a+\")\r")
     else:
         transport.writeln("file.open(\"" + args.dest + "\", \"w+\")\r")
     line = f.readline()
     if args.verbose:
-        sys.stderr.write("\r\nStage 3. Start writing data to flash memory...")
+        sys.stderr.write("Stage 3. Start writing data to flash memory\r\n")
     while line != '':
         transport.writer(line.strip())
         line = f.readline()
@@ -294,7 +292,7 @@ if __name__ == '__main__':
     # close both files
     f.close()
     if args.verbose:
-        sys.stderr.write("\r\nStage 4. Flush data and closing file")
+        sys.stderr.write("Stage 4. Flush data and closing file\r\n")
     transport.writeln("file.flush()\r")
     transport.writeln("file.close()\r")
 
@@ -323,4 +321,5 @@ if __name__ == '__main__':
     # flush screen
     sys.stdout.flush()
     sys.stderr.flush()
-    sys.stderr.write("\r\n--->>> All done <<<---\r\n")
+    if args.verbose:
+    	sys.stderr.write("--->>> All done <<<---\r\n")
