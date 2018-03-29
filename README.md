@@ -81,5 +81,4 @@ nodemcu-master-7-modules-2016-09-25-09-49-12-integer.bin - Firmware SDK 1.5.4.1
 </pre>
 CONTACT
 
-Author: richard.bruna@protonmail.com<br>
 Source: https://github.com/KyomaHooin/D1
